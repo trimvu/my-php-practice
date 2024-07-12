@@ -5,18 +5,27 @@
     <title>Demo</title>
 </head>
 <body>
-
+    
     <h1>
         <?php 
-            echo "Hello, World";
+            $greeting = "Hello";
+
+            // echo $greeting . " " . "Everybody!";
+            echo "$greeting Everybody!";
         ?>
     </h1>
 
     <h2>
         <?php 
-            echo "Hello, Country";
+            echo "$greeting, Universe";
         ?>
     </h2>
+
+    <h3>
+        <?php 
+            echo "$greeting, World!";
+        ?>
+    </h3>
 
     <p>
         <?php 
