@@ -3,35 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Demo</title>
+    <style>
+        body {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
+    <?php 
+        $name = "Dark Matter";
+        $read = true;
+
+        if ($read) {
+            $message = "You have read $name";
+        } else {
+            $message = "You have NOT read $name";
+        }
+    ?>
     
     <h1>
-        <?php 
-            $greeting = "Hello";
-
-            // echo $greeting . " " . "Everybody!";
-            echo "$greeting Everybody!";
-        ?>
+        <?= $message ?>
     </h1>
-
-    <h2>
-        <?php 
-            echo "$greeting, Universe";
-        ?>
-    </h2>
-
-    <h3>
-        <?php 
-            echo "$greeting, World!";
-        ?>
-    </h3>
-
-    <p>
-        <?php 
-            echo "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis veniam enim quisquam vel laborum quibusdam voluptate repellat cupiditate quia asperiores iure neque voluptas ipsum libero, quaerat unde corporis? Consectetur, neque!";
-        ?>
-    </p>
 
 </body>
 </html>
