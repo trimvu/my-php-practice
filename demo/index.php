@@ -52,17 +52,21 @@
             ]
         ];
 
-        function filterByAuthor($books, $author) {
-            $filteredBooks = [];
+        function filter($items, $fn) {
+            $filteredItems = [];
 
-            foreach ($books as $book) {
-                if ($book['author'] === $author) {
-                    $filteredBooks[] = $book;
+            foreach ($items as $item) {
+                if ($fn($item)) {
+                    $filteredItems[] = $item;
                 }
             }
 
-            return $filteredBooks;
-        }
+            return $filteredItems;
+        };
+
+        $filteredBooks = array_filter($books, function ($book) {
+            return $book['published'] >= 1950 && $book['published'] <= 2020;
+        });
 
         function filterMovieByYear($movies, $year) {
             $filteredMoviesYear = [];
@@ -75,6 +79,10 @@
 
             return $filteredMoviesYear;
         }
+
+        $filteredMovies = array_filter($movies, function ($movie) {
+            return $movie['release'] >= 2000;
+        });
 
         function filterMovieByWriter($movies, $writer) {
             $filteredMoviesWriter = [];
@@ -89,11 +97,16 @@
 
             return $filteredMoviesWriter;
         }
+
+        $filteredWriter = array_filter($movies, function ($movie) {
+            return in_array('Joss Whedon', $movie['writer']);
+        })
+
     ?>
 
     <!-- going through a foreach loop of an associative array -->
     <ul>
-        <?php foreach (filterByAuthor($books, 'Andy Weir') as $book) : ?>
+        <?php foreach ($filteredBooks as $book) : ?>
             <li>
                 <a href="<?= $book['purchaseUrl']; ?>">
                     <?= $book['name']; ?> (<?= $book['published'] ?>) - By <?= $book['author'] ?>
@@ -105,7 +118,7 @@
     <h1>Recommended Movies</h1>
 
     <ul>
-        <?php foreach (filterMovieByYear($movies, 2000) as $movie) : ?>
+        <?php foreach ($filteredMovies as $movie) : ?>
             <li>
                 <?= $movie['title']; ?> (<?= $movie['release'] ?>)
             </li>
@@ -113,7 +126,7 @@
     </ul>
 
     <ul>
-        <?php foreach (filterMovieByWriter($movies, 'Joss Whedon') as $movie) : ?>
+        <?php foreach ($filteredWriter as $movie) : ?>
             <li>
                 <?= $movie['title']; ?> (<?= $movie['release'] ?>) <br>Written By 
                 <?php foreach ($movie['writer'] as $writer) : ?>
