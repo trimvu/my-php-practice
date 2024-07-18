@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+require 'functions.php';
 
 $heading = 'Home';
 
