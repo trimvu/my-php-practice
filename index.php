@@ -1,14 +1,12 @@
 <?php
 
 require 'functions.php';
-
-// require 'router.php';
-
 require 'Database.php';
+require 'router.php';
 
-$config = require('config.php');
+// $config = require('config.php');
 
-$db = new Database($config['database']);
+// $db = new Database($config['database']);
 
 $id = $_GET['id'];
 // $query = "select * from posts where id = ?";
